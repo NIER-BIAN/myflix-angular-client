@@ -16,13 +16,31 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+// get rid of error
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// Material Design
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+// FormsModule
+import { FormsModule } from '@angular/forms';
+
+// local
+import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 
 @NgModule({               // decorator that defines an Angular module;
                           // takes a metadata obj as arg
 
     // declarations: array of all components, directives, and pipes that belong to module
     declarations: [
-	AppComponent      // the first / root component of the app
+	AppComponent,     // the first / root component of the app
+	UserRegistrationFormComponent,
+	UserLoginFormComponent
     ],
 
     /*
@@ -40,7 +58,15 @@ import { AppRoutingModule } from './app-routing.module';
     imports: [
 	HttpClientModule, // allows app to send HTTP reqs to a server and handle res
 	BrowserModule,    // allows app to launch and run a browser application
-	AppRoutingModule  // custom module that configures the app's routing
+	AppRoutingModule,  // custom module that configures the app's routing
+	BrowserAnimationsModule,
+	MatInputModule,
+	MatButtonModule,
+	MatCardModule,
+	MatFormFieldModule,
+	MatDialogModule,
+	MatSnackBarModule,
+	FormsModule,
     ],
 
     /*
