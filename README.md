@@ -1,4 +1,4 @@
-# MyFlix (React client)
+# MyFlix (Angular client)
 
 ## Dev
 
