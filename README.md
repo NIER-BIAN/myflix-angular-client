@@ -2,8 +2,8 @@
 
 ## Dev
 
-Run `ng serve` for a dev server.
+- For dev server, run `ng serve`.
 
-Run `ng generate component component-name` to generate a new component.
+- To generate a new component, run `ng generate component component-name`.
 
-Run `ng deploy --base-href=/myFlix-Angular-client/` to deploy a new build.
+- To deploy a new build, run `ng deploy --base-href=/myFlix-Angular-client/`.
