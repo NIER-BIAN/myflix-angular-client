@@ -45,7 +45,8 @@ export class UserRegistrationFormComponent implements OnInit {
 	  specifically associated with a dialog that contains a component of type
 	  UserRegistrationFormComponent. This is crucial for type safety
 	*/
-	public snackBar: MatSnackBar) { }
+	public snackBar: MatSnackBar) {
+    }
 
     /*
       ngOnInit method: method specified by the OnInit interface.
@@ -70,16 +71,15 @@ export class UserRegistrationFormComponent implements OnInit {
 	    // subscribe arg 1 of 2: callback if successful
 	    (response) => {
 
-		// logic for successful registration
-		console.log(response);
-		
+		// step 1 of 2: close registration dialog
 		/*
 		  MatDialogRef is an obj returned by MatDialog.open() that represents
 		  an open dialog instance. It allows interaction with the open dialog.
 		  e.g. closing it.
 		*/
 		this.dialogRef.close();
-		
+
+		// step 4 of 4: briefly display snackbar
 		this.snackBar.open(
 		    "User registered successfully!", 'OK', { duration: 2000 }
 		);

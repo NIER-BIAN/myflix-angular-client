@@ -1,21 +1,12 @@
-<div class="main-page">
-  
-  <h1>Welcome to myFlix!</h1>
-  
-  <button
-    mat-raised-button
-      (click)="openUserRegistrationDialog()"
-      style="margin-right: 10px;"
-      color="primary"
-    >
-    Sign Up
-  </button>
-  
-  <button
-    mat-raised-button
-      (click)="openUserLoginDialog()"
-      color="primary"
-    >
-    Login
-  </button>
-</div>
+<!--
+    Router will dynamically insert components corresponding to the currently active route.
+    When the Ng app starts / when the URL changes, the router matches URL & route.
+    If a route match is found, the router inserts the component's rendered HTML
+    into the <router-outlet> location app.component.html.
+    Whenever the URL changes, the router repeats this process.
+    
+    Any other content in app.component.html would mostly be static elements that surround
+    the dynamically loaded content from the router
+  -->
+
+<router-outlet></router-outlet>

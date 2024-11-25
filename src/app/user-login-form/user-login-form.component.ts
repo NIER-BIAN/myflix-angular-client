@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { Router } from '@angular/router';
 // closes the dialog
 import { MatDialogRef } from '@angular/material/dialog';
 // display success / error messages to  user
@@ -20,6 +21,7 @@ export class UserLoginFormComponent implements OnInit {
     // Ng's dependency injection system provides these instances
     constructor(
 	public fetchApiData: FetchApiDataService,
+	private router: Router,
 	public dialogRef: MatDialogRef<UserLoginFormComponent>,
 	/*
 	  <UserLoginFormComponent>: specifies that this MatDialogRef instance is
@@ -39,26 +41,27 @@ export class UserLoginFormComponent implements OnInit {
 	    // subscribe arg 1 of 2: callback if successful
 	    (response) => {
 
-		// logic for successful login
-		console.log(response);
-
-		// add the current user and token to localStorage
+		// step 1 of 4: route to URL which points to the MovieCardComponent
+		this.router.navigate(['movies']);
+		
+		// step 2 of 4: add the current user and token to localStorage
 		if (response.user) {
 		    // persist user's login session 
 		    localStorage.setItem("user", JSON.stringify(response.user));
 		    localStorage.setItem("token", response.token);
-		    
 		} else {
 		    alert("No such user");
 		}
-		
+
+		// step 3 of 4: close login dialog
 		/*
 		  MatDialogRef is an obj returned by MatDialog.open() that represents
 		  an open dialog instance. It allows interaction with the open dialog.
 		  e.g. closing it.
 		*/
 		this.dialogRef.close();
-		
+
+		// step 4 of 4: briefly display snackbar
 		this.snackBar.open(
 		    "User login successfully!", 'OK', { duration: 2000 }
 		);

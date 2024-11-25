@@ -11,13 +11,18 @@
   root module.
 */
 
+//=======================================================================================
+// IMPORTS
+
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+
 // get rid of error
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // Material Design
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 // FormsModule
 import { FormsModule } from '@angular/forms';
@@ -32,6 +38,11 @@ import { FormsModule } from '@angular/forms';
 // local
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+
+//=======================================================================================
+// MODULES
 
 @NgModule({               // decorator that defines an Angular module;
                           // takes a metadata obj as arg
@@ -40,7 +51,9 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
     declarations: [
 	AppComponent,     // the first / root component of the app
 	UserRegistrationFormComponent,
-	UserLoginFormComponent
+	UserLoginFormComponent,
+	MovieCardComponent,
+	WelcomePageComponent
     ],
 
     /*
@@ -54,7 +67,6 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
       especially important for services; you declare them as providers in a module, and
       then any component in that module's hierarchy can inject and use them.
     */
-    
     imports: [
 	HttpClientModule, // allows app to send HTTP reqs to a server and handle res
 	BrowserModule,    // allows app to launch and run a browser application
@@ -66,6 +78,7 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 	MatFormFieldModule,
 	MatDialogModule,
 	MatSnackBarModule,
+	MatIconModule,
 	FormsModule,
     ],
 
@@ -74,11 +87,13 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
       Add services here that need to be accessible to any component in this module
       as well as any module that imports it.
     */
-    
     providers: [],
 
     // bootstrap: specifies root component Ng should bootstrap when it starts the app
     bootstrap: [AppComponent]
 })
+
+//=======================================================================================
+// EXPORT
 
 export class AppModule { }
