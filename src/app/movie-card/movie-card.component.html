@@ -1,5 +1,12 @@
-<div class="movie-cards-container">
-  
+ <mat-toolbar class="custom-toolbar">
+    <button mat-button routerLink="/movies">Movies</button>
+    <button mat-button routerLink="/profile">Profile</button>
+    <button mat-button (click)="onViewSource()">View Source</button>
+  <button mat-button (click)="onLogout()">Logout</button>
+ </mat-toolbar>
+
+ <div class="movie-cards-container">
+   
   <mat-card *ngFor="let movie of movies;" class="movie-card">
     
     <mat-card-title><h3>{{movie.title}}</h3></mat-card-title>
@@ -34,6 +41,7 @@
       <!-- added <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> to index.html to make this work -->
       <button
         mat-button
+	(click)="toggleFavorite(movie._id)"
 	>
 	<mat-icon>favorite_border</mat-icon>
       </button>

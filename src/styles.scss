@@ -6,13 +6,19 @@
 body {
     font-family: 'Arial', sans-serif;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 1.2rem;
     line-height: 1.5;
     
     height: 100%;
     background-image: linear-gradient(to top right, #E23855, #A339EF);
     background-attachment: fixed;
-    
+}
+
+.custom-toolbar {
+    border-bottom: 2px solid white;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
 }
 
 .main-page-container {
@@ -24,12 +30,21 @@ body {
     border-radius: 20px;
 }
 
+.profile-container {
+    padding: 15px 50px;
+    width: 95%;
+    max-width: 800px;
+    margin: 10px auto 20px auto;
+    background-color: white;
+    border-radius: 20px;
+}
+
 .main-page {
     text-align: center;
 }
 
 p {
-    font-size: 13px;
+    font-size: 1.2rem;
 }
 
 h4 {
@@ -47,22 +62,29 @@ h4 {
     margin-right: 40px
 }
 
+.danger-button {
+    color: white;
+    background-image: linear-gradient(to top right, red, red);
+    border: 6px solid red;
+    border-radius: 15px;
+}
+
 .sm-dialog {
     width: 40%;
-    margin: 0 auto 10px;;
+    margin: 0 auto 10px auto;
 }
 
 .md-dialog {
     width: 50%;
     min-width: 400px;
-    margin: 0 auto 10px;
+    margin: 0 auto 10px auto;
     z-index: 2000;
 }
 
 .lg-dialog {
     width: 80%;
     min-width: 700px;
-    margin: 0 auto 10px;
+    margin: 0 auto 10px auto;
 }
 
 .float-right {
@@ -78,11 +100,12 @@ h4 {
     flex-wrap: wrap;
     max-width: 100%;
     width: 95%;
-    margin: 30px auto 30px auto;
+    margin: 10px auto 30px auto;
 }
 
 .movie-card {
     flex: 1 1 320px;
+    max-width: 95%;
     background-color: white;
     border-radius: 20px;
     margin: 5px;

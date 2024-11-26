@@ -186,13 +186,13 @@ export class FetchApiDataService {
     // UPDATE
 
     // PUT: Update user information
-    public updateUserInfo(userDetails: any): Observable<any> {
+    public updateUserInfo(curUsername: string, userDetails: any): Observable<any> {
 
 	const token = localStorage.getItem('token');
 
 	// put method accepts the URL, THEN the request body, THEN the config obj (ie. headers)
 	return this.http
-	    .put( apiUrl + `/users/${encodeURIComponent(userDetails.username)}`,
+	    .put( apiUrl + `/users/${encodeURIComponent(curUsername)}`,
 		  userDetails,
 		  {headers: new HttpHeaders( { Authorization: 'Bearer ' + token })}
 		 )
@@ -230,21 +230,28 @@ export class FetchApiDataService {
 		    {headers: new HttpHeaders( { Authorization: 'Bearer ' + token })}
 		 )
 	    .pipe(
-		map(this.extractResponseData),
 		catchError(this.handleError)
 	    );
     }
     
     // DELETE: Deregister a user
-    public deregisterUser(userDetails: any): Observable<any> {
+    public deregisterUser(username: string): Observable<any> {
 
 	const token = localStorage.getItem('token');
 	
 	return this.http
-	    .delete( apiUrl + `/users/${encodeURIComponent(userDetails.username)}`,
-		    {headers: new HttpHeaders( { Authorization: 'Bearer ' + token })}
+	    .delete( apiUrl + `/users/${encodeURIComponent(username)}`,
+		     {
+		headers:
+		new HttpHeaders( { Authorization: 'Bearer ' + token }),
+
+		// Ng HttpClient expects JSON response by default but receiving str
+		// Here we explicitly change res type
+		responseType: 'text'
+	    }
 		 )
 	    .pipe(
+		map(this.extractResponseData),
 		catchError(this.handleError)
 	    );
     }
@@ -253,8 +260,9 @@ export class FetchApiDataService {
     // MISC.
 
     // Key here is the || {} part which is a defensive measure against a null or undefined res
-    // but it's not doing any meaningful data extraction
+    // Note that it's not doing any meaningful data extraction
     private extractResponseData(res: Object): any {
+	
 	// if res is null or undefined, return {}
 	return res || { };
     }
@@ -262,16 +270,17 @@ export class FetchApiDataService {
     // handleError method
     private handleError(error: HttpErrorResponse): any {
 
+	let errorMessage = 'Unknown error!';
+	
 	if (error.error instanceof ErrorEvent) {
-	    console.error('Some error occurred:', error.error.message);
+	    // Client-side error
+	    errorMessage = `Error: ${error.error.message}`;
 	} else {
-	    console.error(
-		`Error Status code ${error.status}, ` +
-		    `Error body is: ${error.error}`);
+	    // Server-side error
+	    errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
 	}
-
-	return throwError(
-	    'Something bad happened; please try again later.');
+	console.error(errorMessage)
+	return throwError(() => new Error(errorMessage));
     }
     //=================================================================================
 }

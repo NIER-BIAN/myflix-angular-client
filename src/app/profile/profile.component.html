@@ -1,0 +1,73 @@
+<mat-toolbar class="custom-toolbar">
+  <button mat-button routerLink="/movies">Movies</button>
+  <button mat-button routerLink="/profile">Profile</button>
+  <button mat-button (click)="onViewSource()">View Source</button>
+  <button mat-button (click)="onLogout()">Logout</button>
+</mat-toolbar>
+
+<div class="profile-container"
+     *ngIf="user"
+     >
+  
+  <h3>{{ user.username }}'s Favourited movies:</h3>
+  <div *ngFor="let movie of readableFaveMovies;">
+    <ul><li><p>{{movie.title}}</p></li></ul>
+  </div>
+
+  <br/>
+    
+  <h3>Want to change things up a bit?</h3>
+  <small><em>Enter your new username / password pair here. For security reasons, you will be logged out afterwards.</em></small><br/>
+
+  <br/>
+  
+  <form>
+
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="userData.username"
+        placeholder="New username"
+        type="text"
+        name="username"
+        required
+        >
+    </mat-form-field><br/>
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="userData.password"
+        type = "password"
+        placeholder="New password"
+        name="password"
+        required
+        >
+    </mat-form-field><br/>
+
+    <button
+      mat-raised-button
+      (click)="updateUser()"
+      >
+      <h5>Change my info accordingly!</h5>
+      <mat-icon class="icon-display">
+	navigate_next
+      </mat-icon>
+    </button>
+    
+  </form>
+
+  <br/>
+  
+  <h3>Had enough of us?</h3>
+
+  <button
+    mat-raised-button
+    (click)="deregisterUser()"
+    class="danger-button"
+    >
+      Delete account
+  </button>
+
+  <br/><br/>
+      
+</div>

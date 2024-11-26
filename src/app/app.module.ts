@@ -31,6 +31,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar'; // Navbar
 
 // FormsModule
 import { FormsModule } from '@angular/forms';
@@ -43,6 +44,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { SingleMovieComponent } from './single-movie/single-movie.component';
 import { GenreComponent } from './genre/genre.component';
 import { DirectorComponent } from './director/director.component';
+import { ProfileComponent } from './profile/profile.component';
 
 //=======================================================================================
 // MODULES
@@ -59,7 +61,8 @@ import { DirectorComponent } from './director/director.component';
 	WelcomePageComponent,
 	SingleMovieComponent,
 	GenreComponent,
-	DirectorComponent
+	DirectorComponent,
+	ProfileComponent,
     ],
 
     /*
@@ -86,6 +89,7 @@ import { DirectorComponent } from './director/director.component';
 	MatSnackBarModule,
 	MatIconModule,
 	FormsModule,
+	MatToolbarModule,
     ],
 
     /*

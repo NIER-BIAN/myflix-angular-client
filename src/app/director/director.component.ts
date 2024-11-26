@@ -26,7 +26,7 @@ export class DirectorComponent {
 
     public getDirectorInfo(directorName: string): void {
 	this.fetchApiData.getDirector(this.director.name).subscribe((response: any) => {
-	    // rename res to this.movies as view is expecting an array called "movies"
+	    // rename res as per what view is expecting
 	    this.directorFullInfo = response;
 	});
     }

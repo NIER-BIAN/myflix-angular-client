@@ -1,7 +1,8 @@
 // Note that dialogs are opened in welcome-page and closed in their respective components
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 
@@ -15,7 +16,7 @@ import { DirectorComponent } from '../director/director.component';
     styleUrls: ['../../styles.scss']
 })
 
-export class MovieCardComponent {
+export class MovieCardComponent implements OnInit {
     
     /*
       any properties on this class are considered a reactive state
@@ -23,7 +24,7 @@ export class MovieCardComponent {
       triggers a re-rendering of the component's view
     */
     // movies is a list of any
-    movies: any[] = [];
+    public movies: any[] = [];
 
     /*
       less verbose but functionally identical to:
@@ -34,6 +35,7 @@ export class MovieCardComponent {
      */
     constructor(
 	public fetchApiData: FetchApiDataService,
+	private router: Router,
 	public dialog: MatDialog) {
     }
     
@@ -45,19 +47,45 @@ export class MovieCardComponent {
       It's accesss modifier is "public" as Ng's lifecycle system calls it internally.
     */
     public ngOnInit(): void {
+	
+	// Simple authentication check
+	const token = localStorage.getItem('token');
+	
+	if (!token) {
+	    this.router.navigate(['/welcome']);
+	}
+	
 	// Fire the main method straight away
 	this.getMovies();
     }
 
+    //------------------------------------------------------------------------------------
+    // main method
+    
     public getMovies(): void {
 	
 	this.fetchApiData.getAllMovies().subscribe((response: any) => {
 	    // rename res to this.movies as view is expecting an array called "movies"
 	    this.movies = response;
-	    return this.movies;
+	    //return this.movies;
 	});
     }
+
+    //------------------------------------------------------------------------------------
+    // navbar
     
+    public onLogout() {
+	this.router.navigate(['welcome']);
+	localStorage.clear();
+    }
+
+    public onViewSource() {
+	window.open('https://github.com/NIER-BIAN/myFlix-Angular-client', '_blank');
+    }
+    
+    //------------------------------------------------------------------------------------
+    // dialogs
+		    
     public openSingleMovieDialog(movie: any): void {
 	// The primary method of MatDialog is open()
 	// which takes a component and config options as arg and returns a MatDialogRef
@@ -88,5 +116,12 @@ export class MovieCardComponent {
 		panelClass: 'md-dialog'
 	    }
 	);
+    }
+
+    //------------------------------------------------------------------------------------
+    // toggleFavorite
+
+    public toggleFavorite(id: string): void {
+	console.log("toggled");
     }
 }

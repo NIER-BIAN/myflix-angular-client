@@ -27,7 +27,7 @@ export class GenreComponent {
 
     public getGenreInfo(genreName: string): void {
 	this.fetchApiData.getGenre(this.genre.name).subscribe((response: any) => {
-	    // rename res to this.movies as view is expecting an array called "movies"
+	    // rename res as per what view is expecting
 	    this.genreFullInfo = response;
 	});
     }
