@@ -16,7 +16,7 @@ body {
 
 .custom-toolbar {
     border-bottom: 2px solid white;
-    max-width: 1200px;
+    max-width: 95%;
     margin: 0 auto;
     color: white;
 }
@@ -96,19 +96,17 @@ h4 {
 }
 
 .movie-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100%;
-    width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+    max-width: 95%;
     margin: 10px auto 30px auto;
 }
 
 .movie-card {
-    flex: 1 1 320px;
     max-width: 95%;
     background-color: white;
     border-radius: 20px;
-    margin: 5px;
     padding: 10px;
     
     display: flex;
@@ -118,4 +116,23 @@ h4 {
 
 .image {
     max-width: 70%;
+}
+
+
+@media all and (max-width: 700px) {
+    .movie-cards-container  {
+	grid-template-columns: 1fr;
+    }
+}
+
+@media all and (min-width: 700px) and (max-width: 1000px){
+    .movie-cards-container {
+	grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (min-width: 1000px) and (max-width: 1300px){
+    .movie-cards-container {
+	grid-template-columns: 1fr 1fr 1fr;
+    }
 }

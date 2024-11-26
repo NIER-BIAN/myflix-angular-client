@@ -43,7 +43,15 @@
         mat-button
 	(click)="toggleFavorite(movie._id)"
 	>
-	<mat-icon>favorite_border</mat-icon>
+	<div *ngIf="user">
+	  <div *ngIf="!user.favoriteMovies.includes(movie._id)">
+	    <mat-icon style="color: #E23855;">favorite_border</mat-icon>
+	  </div>
+	  <div *ngIf="user.favoriteMovies.includes(movie._id)">
+	    <mat-icon style="color: #E23855;">favorite</mat-icon>
+	  </div>
+	</div>
+	
       </button>
 
     </mat-card-actions>

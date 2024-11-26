@@ -10,8 +10,15 @@
      >
   
   <h3>{{ user.username }}'s Favourited movies:</h3>
-  <div *ngFor="let movie of readableFaveMovies;">
-    <ul><li><p>{{movie.title}}</p></li></ul>
+  
+  <div *ngIf="readableFaveMovies.length ===0">
+    <small><em>You haven't favourited any movies yet.</em></small>
+  </div>
+  
+  <div *ngIf="readableFaveMovies">
+    <div *ngFor="let movie of readableFaveMovies;">
+      <ul><li><p>{{movie.title}}</p></li></ul>
+    </div>
   </div>
 
   <br/>

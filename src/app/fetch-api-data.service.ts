@@ -230,6 +230,7 @@ export class FetchApiDataService {
 		    {headers: new HttpHeaders( { Authorization: 'Bearer ' + token })}
 		 )
 	    .pipe(
+		map(this.extractResponseData),
 		catchError(this.handleError)
 	    );
     }

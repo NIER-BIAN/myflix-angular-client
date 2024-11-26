@@ -25,7 +25,7 @@ export class MovieCardComponent implements OnInit {
     */
     // movies is a list of any
     public movies: any[] = [];
-
+    public user: any;
     /*
       less verbose but functionally identical to:
       
@@ -57,20 +57,31 @@ export class MovieCardComponent implements OnInit {
 	
 	// Fire the main method straight away
 	this.getMovies();
+	this.getUser();
     }
 
     //------------------------------------------------------------------------------------
-    // main method
+    // main methods: note that both are needed to check all movies if they're faved
     
     public getMovies(): void {
 	
 	this.fetchApiData.getAllMovies().subscribe((response: any) => {
 	    // rename res to this.movies as view is expecting an array called "movies"
 	    this.movies = response;
-	    //return this.movies;
 	});
     }
+    
+    public getUser(): void {
+	
+        const userString = localStorage.getItem('user'); 
 
+        if (userString) {
+            const user = JSON.parse(userString);
+            this.fetchApiData.getOneUser(user).subscribe((response: any) => {
+		this.user = response;
+            });
+        }
+    }
     //------------------------------------------------------------------------------------
     // navbar
     
@@ -122,6 +133,25 @@ export class MovieCardComponent implements OnInit {
     // toggleFavorite
 
     public toggleFavorite(id: string): void {
-	console.log("toggled");
+
+	// add if not included
+	if (!this.user.favoriteMovies.includes(id)) {
+
+	    this.fetchApiData.addToFavorites(this.user, id).subscribe((response: any) => {
+		// user with updated favorites array
+		this.user = response;
+		console.log("added!");
+	    });
+	}
+
+	// remove if included
+	else {
+
+	    this.fetchApiData.removeFromFavorites(this.user, id).subscribe((response: any) => {
+		// user with updated favorites array
+		this.user = response;
+		console.log("removed!");
+	    });
+	}
     }
 }

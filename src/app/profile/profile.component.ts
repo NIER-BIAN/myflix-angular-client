@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
     }
 
     //------------------------------------------------------------------------------------
-    // main methods
+    // main methods: note that both are needed to render faved movies as titles and not ids
     
     public getMovies(): void {
 	
@@ -101,8 +101,6 @@ export class ProfileComponent implements OnInit {
             const username = JSON.parse(userString).username;
 	    this.fetchApiData.deregisterUser(username).subscribe((response: any) => {
 
-		console.log("HIIII");
-		
 		this.snackBar.open(
 		    "User deleted! You have been logged out.", 'OK', { duration: 4000 }
 		);
