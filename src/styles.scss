@@ -1,1 +1,98 @@
-/* You can add global styles to this file, and also import other style files */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    
+    height: 100%;
+    background-image: linear-gradient(to top right, #E23855, #A339EF);
+    background-attachment: fixed;
+    
+}
+
+.main-page-container {
+    width: 95%;
+    max-width: 800px;
+    margin: 50px auto 20px auto;
+    height: 50%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.main-page {
+    text-align: center;
+}
+
+p {
+    font-size: 13px;
+}
+
+h4 {
+    font-size: 15px;
+    color: white;
+}
+
+.custom-buttons {
+    margin-right: 5px;
+    background-image: linear-gradient(to top right, #E23855, #A339EF);
+    border-radius: 15px;
+}
+
+.signup-button {
+    margin-right: 40px
+}
+
+.sm-dialog {
+    width: 40%;
+    margin: 0 auto 10px;;
+}
+
+.md-dialog {
+    width: 50%;
+    min-width: 400px;
+    margin: 0 auto 10px;
+    z-index: 2000;
+}
+
+.lg-dialog {
+    width: 80%;
+    min-width: 700px;
+    margin: 0 auto 10px;
+}
+
+.float-right {
+    float: right;
+}
+
+.icon-display {
+    transform: scale(2);
+}
+
+.movie-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    width: 95%;
+    margin: 30px auto 30px auto;
+}
+
+.movie-card {
+    flex: 1 1 320px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 5px;
+    padding: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image {
+    max-width: 70%;
+}

@@ -1,0 +1,21 @@
+<mat-card>
+  
+  <mat-card-content>
+    
+    <button
+      mat-raised-button
+      (click)="close()"
+      class="float-right"
+      >
+      x
+    </button>
+    
+    <h1>{{ movie.title }}</h1>
+    
+    <p><em>Directed by {{ movie.director.name }}</em></p>
+    
+    <p>{{ movie.description }}</p>
+
+  </mat-card-content>
+
+</mat-card>

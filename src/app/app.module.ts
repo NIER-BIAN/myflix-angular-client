@@ -40,6 +40,9 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { SingleMovieComponent } from './single-movie/single-movie.component';
+import { GenreComponent } from './genre/genre.component';
+import { DirectorComponent } from './director/director.component';
 
 //=======================================================================================
 // MODULES
@@ -53,7 +56,10 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 	UserRegistrationFormComponent,
 	UserLoginFormComponent,
 	MovieCardComponent,
-	WelcomePageComponent
+	WelcomePageComponent,
+	SingleMovieComponent,
+	GenreComponent,
+	DirectorComponent
     ],
 
     /*

@@ -1,14 +1,27 @@
+// Note that dialogs are opened in welcome-page and closed in their respective components
+
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { FetchApiDataService } from '../fetch-api-data.service';
+
+import { SingleMovieComponent } from '../single-movie/single-movie.component';
+import { GenreComponent } from '../genre/genre.component';
+import { DirectorComponent } from '../director/director.component';
 
 @Component({
     selector: 'app-movie-card',
     templateUrl: './movie-card.component.html',
-    styleUrls: ['./movie-card.component.scss']
+    styleUrls: ['../../styles.scss']
 })
 
 export class MovieCardComponent {
-
+    
+    /*
+      any properties on this class are considered a reactive state
+      i.e. they are automatically tracked. Change in value of any of these properties
+      triggers a re-rendering of the component's view
+    */
     // movies is a list of any
     movies: any[] = [];
 
@@ -19,7 +32,10 @@ export class MovieCardComponent {
         this.fetchApiData = fetchApiData;
       }
      */
-    constructor(public fetchApiData: FetchApiDataService) { }
+    constructor(
+	public fetchApiData: FetchApiDataService,
+	public dialog: MatDialog) {
+    }
     
     /*
       ngOnInit method: method specified by the OnInit interface.
@@ -40,5 +56,37 @@ export class MovieCardComponent {
 	    this.movies = response;
 	    return this.movies;
 	});
+    }
+    
+    public openSingleMovieDialog(movie: any): void {
+	// The primary method of MatDialog is open()
+	// which takes a component and config options as arg and returns a MatDialogRef
+	this.dialog.open(
+	    SingleMovieComponent,
+	    {
+		data: { movie: movie },
+		panelClass: 'lg-dialog'
+	    }
+	);
+    }
+    
+    public openGenreDialog(genre: any): void {
+	this.dialog.open(
+	    GenreComponent,
+	    {
+		data: { genre: genre },
+		panelClass: 'md-dialog'
+	    }
+	);
+    }
+    
+    public openDirectorDialog(director: string): void {
+	this.dialog.open(
+	    DirectorComponent,
+	    {
+		data: { director: director },
+		panelClass: 'md-dialog'
+	    }
+	);
     }
 }

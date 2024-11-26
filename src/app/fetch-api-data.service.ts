@@ -158,7 +158,7 @@ export class FetchApiDataService {
 	const token = localStorage.getItem('token');
 	
 	return this.http
-	    .get( apiUrl + `/movies/genres/${encodeURIComponent(genreName)}`,
+	    .get( apiUrl + `/movies/genre/${encodeURIComponent(genreName)}`,
 		 {headers: new HttpHeaders( { Authorization: 'Bearer ' + token })}
 		)
 	    .pipe(
@@ -173,7 +173,7 @@ export class FetchApiDataService {
 	const token = localStorage.getItem('token');
 	
 	return this.http
-	    .get( apiUrl + `/movies/genres/${encodeURIComponent(directorName)}`,
+	    .get( apiUrl + `/movies/directors/${encodeURIComponent(directorName)}`,
 		 {headers: new HttpHeaders( { Authorization: 'Bearer ' + token })}
 		)
 	    .pipe(

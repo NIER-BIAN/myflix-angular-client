@@ -9,7 +9,7 @@ import { UserRegistrationFormComponent } from '../user-registration-form/user-re
 @Component({
     selector: 'app-welcome-page',
     templateUrl: './welcome-page.component.html',
-    styleUrls: ['./welcome-page.component.scss']
+    styleUrls: ['../../styles.scss']
 })
 
 export class WelcomePageComponent implements OnInit {
@@ -34,22 +34,19 @@ export class WelcomePageComponent implements OnInit {
     
     // open the dialog when the signup button is clicked  
     public openUserRegistrationDialog(): void {
-
 	// The primary method of MatDialog is open()
 	// which takes a component and config options as arg and returns a MatDialogRef
 	this.dialog.open(
 	    UserRegistrationFormComponent,
-	    { width: '280px' }
+	    { panelClass: 'sm-dialog' }
 	);
     }
 
      // open the dialog when the login button is clicked  
     public openUserLoginDialog(): void {
-	// The primary method of MatDialog is open()
-	// which takes a component and config options as arg and returns a MatDialogRef
 	this.dialog.open(
 	    UserLoginFormComponent,
-	    { width: '280px' }
+	    { panelClass: 'sm-dialog' }
 	);
     }
 }

@@ -1,0 +1,24 @@
+<mat-card>
+  
+  <mat-card-content>
+    
+    <button
+      mat-raised-button
+      (click)="close()"
+      class="float-right"
+      >
+      x
+    </button>
+    
+    <h1>{{ director.name }}</h1>
+    <p>{{ director.bio }}</p>
+
+    <h3>Movies directed by {{ director.name }}:</h3>
+
+    <div *ngFor="let movie of directorFullInfo;">
+      <ul><li><p>{{movie.title}}</p></li></ul>
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

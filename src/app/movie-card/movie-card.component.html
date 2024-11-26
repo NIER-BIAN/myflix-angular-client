@@ -1,41 +1,43 @@
-<div style="display: flex;">
+<div class="movie-cards-container">
   
-  <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
+  <mat-card *ngFor="let movie of movies;" class="movie-card">
     
-    <mat-card-header>
-      <mat-card-title>{{movie.title}}</mat-card-title>
-      <mat-card-subtitle>Directed by: {{movie.director.name}}</mat-card-subtitle>
-    </mat-card-header>
+    <mat-card-title><h3>{{movie.title}}</h3></mat-card-title>
     
-    <img src={{movie.imagePath}} alt= {{movie.title}} />
+    <img class="image" src={{movie.imagePath}} alt= {{movie.title}} />
     
     <mat-card-actions>
+      
       <button
         mat-button
-        color="primary"
-        >
-        Genre
+	(click)="openSingleMovieDialog(movie)"
+      >
+	<mat-icon>more_horiz</mat-icon>
       </button>
+      
       <button
         mat-button
-        color="primary"
+	class="custom-buttons"
+	(click)="openGenreDialog(movie.genre)"
         >
-        Director
+	<h4>Genre</h4>
       </button>
+      
       <button
         mat-button
-        color="primary"
+	class="custom-buttons"
+	(click)="openDirectorDialog(movie.director)"
         >
-        Synopsis
+	<h4>Director</h4>
       </button>
 
-      <!-- added
-	   <link
-	     href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
-	    >
-	   to index.html to make this work -->
-      <mat-icon>favorite_border</mat-icon>
-      
+      <!-- added <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> to index.html to make this work -->
+      <button
+        mat-button
+	>
+	<mat-icon>favorite_border</mat-icon>
+      </button>
+
     </mat-card-actions>
     
   </mat-card>

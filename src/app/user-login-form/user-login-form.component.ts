@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
-  styleUrl: './user-login-form.component.scss'
+  styleUrl: '../../styles.scss'
 })
 
 export class UserLoginFormComponent implements OnInit {
@@ -74,6 +74,11 @@ export class UserLoginFormComponent implements OnInit {
 		);
 	    }
 	);
+    }
+
+    //Close the dialog 
+    public cancelLogin(): void {
+        this.dialogRef.close();
     }
 
 }
