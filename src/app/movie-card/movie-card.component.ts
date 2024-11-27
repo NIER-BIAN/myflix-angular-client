@@ -10,6 +10,11 @@ import { SingleMovieComponent } from '../single-movie/single-movie.component';
 import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 
+/**
+ * @Component MovieCardComponent
+ * This component displays a list of movies, handles user authentication, and provides
+ * functionality for opening dialogs and managing favorite movies.
+ */
 @Component({
     selector: 'app-movie-card',
     templateUrl: './movie-card.component.html',
@@ -23,15 +28,28 @@ export class MovieCardComponent implements OnInit {
       i.e. they are automatically tracked. Change in value of any of these properties
       triggers a re-rendering of the component's view
     */
-    // movies is a list of any
+    
+    /**
+     * movies: An array to store movie data fetched from the API.
+     */
     public movies: any[] = [];
+    /**
+     * user: Stores the currently logged-in user's information.
+     */
     public user: any;
+    
     /*
       less verbose but functionally identical to:
       
       constructor(fetchApiData: FetchApiDataService) {
         this.fetchApiData = fetchApiData;
       }
+    */
+    /**
+     * Constructor injects necessary services.
+     * @param fetchApiData - Service to fetch data from the API.
+     * @param router - Angular's router service for navigation.
+     * @param dialog - Angular Material's dialog service for opening dialogs.
      */
     constructor(
 	public fetchApiData: FetchApiDataService,
@@ -46,6 +64,10 @@ export class MovieCardComponent implements OnInit {
       i.e. a convenient place to perform additional setup tasks after all inputs are available.
       It's accesss modifier is "public" as Ng's lifecycle system calls it internally.
     */
+    /**
+     * ngOnInit: Lifecycle hook that performs initial setup tasks after component creation.
+     * Checks for authentication and fetches movie and user data.
+     */
     public ngOnInit(): void {
 	
 	// Simple authentication check
@@ -63,6 +85,10 @@ export class MovieCardComponent implements OnInit {
     //------------------------------------------------------------------------------------
     // main methods: note that both are needed to check all movies if they're faved
     
+    /**
+     * getMovies: Fetches all movies from the API and updates the `movies` array.  Uses RxJS
+     * `catchError` to handle potential errors during the API call.
+     */
     public getMovies(): void {
 	
 	this.fetchApiData.getAllMovies().subscribe((response: any) => {
@@ -71,6 +97,10 @@ export class MovieCardComponent implements OnInit {
 	});
     }
     
+    /**
+     * getUser: Retrieves user information from local storage and fetches detailed user data
+     * from the API.  Handles potential errors using `catchError`.
+     */
     public getUser(): void {
 	
         const userString = localStorage.getItem('user'); 
@@ -85,18 +115,28 @@ export class MovieCardComponent implements OnInit {
     //------------------------------------------------------------------------------------
     // navbar
     
+    /**
+     * onLogout: Logs out the user, clears local storage, and navigates to the welcome page.
+     */
     public onLogout() {
 	this.router.navigate(['welcome']);
 	localStorage.clear();
     }
 
+    /**
+     * onViewSource: Opens the project's GitHub repository in a new tab.
+     */
     public onViewSource() {
 	window.open('https://github.com/NIER-BIAN/myFlix-Angular-client', '_blank');
     }
     
     //------------------------------------------------------------------------------------
     // dialogs
-		    
+
+    /**
+     * openSingleMovieDialog: Opens a dialog displaying detailed information about a single movie.
+     * @param movie - The movie data to display in the dialog.
+     */
     public openSingleMovieDialog(movie: any): void {
 	// The primary method of MatDialog is open()
 	// which takes a component and config options as arg and returns a MatDialogRef
@@ -108,7 +148,11 @@ export class MovieCardComponent implements OnInit {
 	    }
 	);
     }
-    
+
+    /**
+     * openGenreDialog: Opens a dialog displaying detailed information about a movie genre.
+     * @param genre - The genre data to display in the dialog.
+     */
     public openGenreDialog(genre: any): void {
 	this.dialog.open(
 	    GenreComponent,
@@ -118,7 +162,11 @@ export class MovieCardComponent implements OnInit {
 	    }
 	);
     }
-    
+
+    /**
+     * openDirectorDialog: Opens a dialog displaying detailed information about a movie director.
+     * @param director - The director's name to display in the dialog.
+     */
     public openDirectorDialog(director: string): void {
 	this.dialog.open(
 	    DirectorComponent,
@@ -131,7 +179,12 @@ export class MovieCardComponent implements OnInit {
 
     //------------------------------------------------------------------------------------
     // toggleFavorite
-
+    
+    /**
+     * toggleFavorite: Adds or removes a movie from the user's favorite movies list.  Uses RxJS
+     * `catchError` to handle potential errors during API calls.
+     * @param id - The ID of the movie to toggle.
+     */
     public toggleFavorite(id: string): void {
 
 	// add if not included

@@ -6,6 +6,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 // display success / error messages to  user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * @Component UserLoginFormComponent
+ * This component handles user login functionality. It uses the FetchApiDataService to communicate
+ * with the backend API, and MatDialogRef to close the login dialog.  It also uses MatSnackBar
+ * to display success or error messages to the user.
+ */
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -14,11 +20,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class UserLoginFormComponent implements OnInit {
     
-    // define an input property named userData
+    /** Input property to receive user login data. */
     @Input() userData = { username: '', password: '' };
 
-    // Inject necessary services
-    // Ng's dependency injection system provides these instances
+    /**
+     * Constructor for the UserLoginFormComponent class.
+     * @param fetchApiData - An instance of FetchApiDataService for API calls.
+     * @param router - An instance of Router for navigation.
+     * @param dialogRef - An instance of MatDialogRef to close the dialog.
+     * @param snackBar - An instance of MatSnackBar to display messages.
+     */
     constructor(
 	public fetchApiData: FetchApiDataService,
 	private router: Router,
@@ -29,10 +40,16 @@ export class UserLoginFormComponent implements OnInit {
 	  UserLoginFormComponent. This is crucial for type safety.
 	*/
 	public snackBar: MatSnackBar) { }
-
+    
+    /**
+     * ngOnInit lifecycle hook.
+     */
     public ngOnInit(): void {
     }
 
+    /**
+     * Handles user login.  Makes an API call to authenticate the user and handles success/failure cases.
+     */
     public loginUser(): void {
 
 	// subscribes to the observable returned by the API call
@@ -76,7 +93,9 @@ export class UserLoginFormComponent implements OnInit {
 	);
     }
 
-    //Close the dialog 
+    /**
+     * Closes the login dialog.
+     */
     public cancelLogin(): void {
         this.dialogRef.close();
     }

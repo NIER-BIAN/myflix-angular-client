@@ -1,4 +1,8 @@
-// fetch-api-data.service.ts is an Ng service that handles communication with an API
+/**
+ * FetchApiDataService: An Angular service responsible for handling communication with a backend API.
+ * This service uses RxJS Observables to manage asynchronous operations and provides methods for
+ * creating, reading, updating, and deleting data.
+ */
 
 //=======================================================================================
 // IMPORTS
@@ -13,8 +17,10 @@ import { map } from 'rxjs/operators';
 // the api url that will provide data for the client app
 const apiUrl = 'https://nier-myflix-backend-63a3c9fa7364.herokuapp.com';
 
-// decorator marks the service as injectable at the root level of the application
-// i.e. this service will be available everywhere
+/**
+ * Injectable decorator marks this service as injectable at the root level of the application,
+ * making it available throughout the application.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -52,6 +58,12 @@ export class FetchApiDataService {
 
     // POST: Create a new user
     // Tell the TS compiler that the func returns an Observable that emits val of type any.
+    /**
+     * userRegistration: Registers a new user with the API.  Returns an Observable that emits
+     * the API response. Uses RxJS pipe to handle the response and catch errors.
+     * @param userDetails - The user details to be registered.
+     * @returns An Observable emitting the API response or an error.
+     */
     public userRegistration(userDetails: any): Observable<any> {
 
 	/*
@@ -72,6 +84,12 @@ export class FetchApiDataService {
     }
 
     // POST: Log a user in
+    /**
+     * userLogin: Logs in a user with the API. Returns an Observable that emits the API response.
+     * Uses RxJS pipe to handle the response and catch errors.
+     * @param userDetails - The user credentials.
+     * @returns An Observable emitting the API response or an error.
+     */
     public userLogin(userDetails: any): Observable<any> {
 
 	// set up correct login url: /login?username={username}&password={password}
@@ -92,6 +110,12 @@ export class FetchApiDataService {
     //=================================================================================
     // READ
 
+    /**
+     * getAllUsers: Retrieves all users from the API. Returns an Observable that emits the API
+     * response.  Includes authorization header. Uses RxJS pipe to handle the response and catch
+     * errors.
+     * @returns An Observable emitting the API response or an error.
+     */
     // GET: Get info on all users
     public getAllUsers(): Observable<any> {
 	
@@ -108,6 +132,13 @@ export class FetchApiDataService {
     }
     
     // GET: Get info on a single user by username
+    /**
+     * getOneUser: Retrieves a single user from the API by username. Returns an Observable that
+     * emits the API response. Includes authorization header. Uses RxJS pipe to handle the
+     * response and catch errors.
+     * @param userDetails - The username of the user to retrieve.
+     * @returns An Observable emitting the API response or an error.
+     */
     public getOneUser(userDetails: any): Observable<any> {
 	
 	const token = localStorage.getItem('token');
@@ -123,6 +154,12 @@ export class FetchApiDataService {
     }
     
     // GET: Get a list of all movies
+    /**
+     * getAllMovies: Retrieves all movies from the API. Returns an Observable that emits the API
+     * response. Includes authorization header. Uses RxJS pipe to handle the response and catch
+     * errors.
+     * @returns An Observable emitting the API response or an error.
+     */
     public getAllMovies(): Observable<any> {
 	
 	const token = localStorage.getItem('token');
@@ -138,6 +175,13 @@ export class FetchApiDataService {
     }
 
     // GET: Get data about a single movie by title
+    /**
+     * getOneMovie: Retrieves a single movie from the API by title. Returns an Observable that
+     * emits the API response. Includes authorization header. Uses RxJS pipe to handle the
+     * response and catch errors.
+     * @param movieTitle - The title of the movie to retrieve.
+     * @returns An Observable emitting the API response or an error.
+     */
     public getOneMovie(movieTitle: string): Observable<any> {
 	
 	const token = localStorage.getItem('token');
@@ -153,6 +197,13 @@ export class FetchApiDataService {
     }
     
     // GET: Get data about a genre by name
+    /**
+     * getGenre: Retrieves movies by genre from the API. Returns an Observable that emits the API
+     * response. Includes authorization header. Uses RxJS pipe to handle the response and catch
+     * errors.
+     * @param genreName - The name of the genre to retrieve movies for.
+     * @returns An Observable emitting the API response or an error.
+     */
     public getGenre(genreName: string): Observable<any> {
 	
 	const token = localStorage.getItem('token');
@@ -168,6 +219,13 @@ export class FetchApiDataService {
     }
     
     // GET: Get data about a director by name
+    /**
+     * getDirector: Retrieves movies by director from the API. Returns an Observable that emits
+     * the API response. Includes authorization header. Uses RxJS pipe to handle the response and
+     * catch errors.
+     * @param directorName - The name of the director to retrieve movies for.
+     * @returns An Observable emitting the API response or an error.
+     */
     public getDirector(directorName: string): Observable<any> {
 	
 	const token = localStorage.getItem('token');
@@ -186,6 +244,14 @@ export class FetchApiDataService {
     // UPDATE
 
     // PUT: Update user information
+    /**
+     * updateUserInfo: Updates user information in the API. Returns an Observable that emits the
+     * API response. Includes authorization header. Uses RxJS pipe to handle the response and
+     * catch errors.
+     * @param curUsername - The current username.
+     * @param userDetails - The updated user details.
+     * @returns An Observable emitting the API response or an error.
+     */
     public updateUserInfo(curUsername: string, userDetails: any): Observable<any> {
 
 	const token = localStorage.getItem('token');
@@ -203,6 +269,14 @@ export class FetchApiDataService {
     }
     
     // PATCH: Add a movie to a user's favorite movies
+    /**
+     * addToFavorites: Adds a movie to a user's favorites. Returns an Observable that emits the
+     * API response. Includes authorization header. Uses RxJS pipe to handle the response and
+     * catch errors.
+     * @param userDetails - The user details.
+     * @param movieID - The ID of the movie to add to favorites.
+     * @returns An Observable emitting the API response or an error.
+     */
     public addToFavorites(userDetails: any, movieID: string): Observable<any> {
 
 	const token = localStorage.getItem('token');
@@ -221,6 +295,14 @@ export class FetchApiDataService {
     // DELETE
 
     // DELETE: Remove a movie from a user's favorite movies
+    /**
+     * removeFromFavorites: Removes a movie from a user's favorites. Returns an Observable that
+     * emits the API response. Includes authorization header. Uses RxJS pipe to handle the
+     * response and catch errors.
+     * @param userDetails - The user details.
+     * @param movieID - The ID of the movie to remove from favorites.
+     * @returns An Observable emitting the API response or an error.
+     */
     public removeFromFavorites(userDetails: any, movieID: string): Observable<any> {
 
 	const token = localStorage.getItem('token');
@@ -236,6 +318,13 @@ export class FetchApiDataService {
     }
     
     // DELETE: Deregister a user
+    /**
+     * deregisterUser: Deregisters a user from the API. Returns an Observable that emits the API
+     * response. Includes authorization header and sets the response type to text. Uses RxJS pipe
+     * to handle the response and catch errors.
+     * @param username - The username of the user to deregister.
+     * @returns An Observable emitting the API response or an error.
+     */
     public deregisterUser(username: string): Observable<any> {
 
 	const token = localStorage.getItem('token');
@@ -262,6 +351,12 @@ export class FetchApiDataService {
 
     // Key here is the || {} part which is a defensive measure against a null or undefined res
     // Note that it's not doing any meaningful data extraction
+    /**
+     * extractResponseData: Extracts the response data from an HTTP response.  Handles potential
+     * null or undefined responses.
+     * @param res - The HTTP response.
+     * @returns The extracted response data.
+     */
     private extractResponseData(res: Object): any {
 	
 	// if res is null or undefined, return {}
@@ -269,6 +364,12 @@ export class FetchApiDataService {
     }
 
     // handleError method
+    /**
+     * handleError: Handles errors that occur during HTTP requests.  Provides informative error
+     * messages based on whether the error is client-side or server-side.
+     * @param error - The HTTP error response.
+     * @returns An Observable that throws an error.
+     */
     private handleError(error: HttpErrorResponse): any {
 
 	let errorMessage = 'Unknown error!';

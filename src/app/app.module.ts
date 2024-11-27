@@ -1,3 +1,10 @@
+/**
+ * AppModule: The root module of the application.  This module bootstraps the application and
+ * declares all the components, services, and modules used throughout the application.  As the
+ * application grows, consider refactoring components and services into their own modules for better
+ * organization and maintainability.
+ */
+
 /*
   Note: in an Ng app, this file is the main entry point for configuring the app
   It defines and organizes the different parts of the app
@@ -49,6 +56,12 @@ import { ProfileComponent } from './profile/profile.component';
 //=======================================================================================
 // MODULES
 
+
+/**
+ * NgModule declaration for AppModule. This metadata object configures the module, specifying
+ * its declarations (components, directives, pipes), imports (other modules it depends on),
+ * providers (services it provides), and the bootstrap component (AppComponent).
+ */
 @NgModule({               // decorator that defines an Angular module;
                           // takes a metadata obj as arg
 

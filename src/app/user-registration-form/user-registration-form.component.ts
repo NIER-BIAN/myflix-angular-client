@@ -5,6 +5,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 // display success / error messages to  user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * @Component UserRegistrationFormComponent
+ * This component handles user registration. It uses the FetchApiDataService to communicate with the
+ * backend API, MatDialogRef to close the registration dialog, and MatSnackBar to display messages to the user.
+ */
 @Component({
     selector: 'app-user-registration-form',
     templateUrl: './user-registration-form.component.html',
@@ -32,11 +37,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class UserRegistrationFormComponent implements OnInit {
 
-    // define an input property named userData
+    /** Input property to receive user registration data. */
     @Input() userData = { username: '', password: '' };
 
-    // Inject necessary services
-    // Ng's dependency injection system provides these instances
+    /**
+     * Constructor for the UserRegistrationFormComponent class.
+     * @param fetchApiData - An instance of FetchApiDataService for API calls.
+     * @param dialogRef - An instance of MatDialogRef to close the dialog.
+     * @param snackBar - An instance of MatSnackBar to display messages.
+     */
     constructor(
 	public fetchApiData: FetchApiDataService,
 	public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
@@ -55,6 +64,9 @@ export class UserRegistrationFormComponent implements OnInit {
       i.e. a convenient place to perform additional setup tasks after all inputs are available.
       It's accesss modifier is "public" as Ng's lifecycle system calls it internally.
     */
+    /**
+     * ngOnInit lifecycle hook.  Currently empty, but included as a placeholder for future use.
+     */
     public ngOnInit(): void {
     }
     /* WHY IS IT EMPTY?
@@ -63,6 +75,9 @@ export class UserRegistrationFormComponent implements OnInit {
        Although it adds no immediate functionality, it'sa demonstration of good coding style.
      */
 
+    /**
+     * Handles user registration. Makes an API call to register the user and handles success/failure cases.
+     */
     public registerUser(): void {
 
 	// subscribes to the observable returned by the API call
@@ -94,7 +109,9 @@ export class UserRegistrationFormComponent implements OnInit {
 	);
     }
     
-    //Close the dialog 
+    /**
+     * Closes the registration dialog.
+     */
     public cancelRegistration(): void {
         this.dialogRef.close();
     }
