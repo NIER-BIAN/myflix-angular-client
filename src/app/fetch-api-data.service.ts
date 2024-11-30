@@ -280,15 +280,21 @@ export class FetchApiDataService {
     public addToFavorites(userDetails: any, movieID: string): Observable<any> {
 
 	const token = localStorage.getItem('token');
+
+	//-------!!! explicitly modify the headers object, otherwise there will be no auth in header
+	let headers = new HttpHeaders();
+	headers = headers.set('Authorization', 'Bearer ' + token);
+	//-------
 	
 	return this.http
 	    .patch( apiUrl + `/users/${encodeURIComponent(userDetails.username)}/movies/${movieID}`,
-		    {headers: new HttpHeaders( { Authorization: 'Bearer ' + token })}
+		    null,
+		    { headers }
 		 )
 	    .pipe(
 		map(this.extractResponseData),
 		catchError(this.handleError)
-	    );
+		);
     }
     
     //=================================================================================

@@ -189,11 +189,10 @@ export class MovieCardComponent implements OnInit {
 
 	// add if not included
 	if (!this.user.favoriteMovies.includes(id)) {
-
+	    
 	    this.fetchApiData.addToFavorites(this.user, id).subscribe((response: any) => {
 		// user with updated favorites array
 		this.user = response;
-		console.log("added!");
 	    });
 	}
 
@@ -203,7 +202,6 @@ export class MovieCardComponent implements OnInit {
 	    this.fetchApiData.removeFromFavorites(this.user, id).subscribe((response: any) => {
 		// user with updated favorites array
 		this.user = response;
-		console.log("removed!");
 	    });
 	}
     }
